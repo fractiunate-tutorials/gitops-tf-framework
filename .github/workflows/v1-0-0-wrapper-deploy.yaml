@@ -20,12 +20,12 @@ jobs:
   test-input:
     runs-on: ubuntu-20.04
     steps:
-      - run: echo ${{ toJSON(github.event.inputs) }}
+      - run: echo "${{ toJSON(github.event.inputs) }}"
   az-tf-deploy:
     permissions:
       id-token: write # need this for OIDC
       contents: read
     uses: fractiunate-tutorials/gitops-reusable-workflows-modules/.github/workflows/wf-az-tf-deploy.yaml@main
     with:
-      environment: ${{ github.event.inputs.environment }}
+      environment: "${{ github.event.inputs.environment }}"
     secrets: inherit
