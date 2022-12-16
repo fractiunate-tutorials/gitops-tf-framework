@@ -1,0 +1,22 @@
+name: CI workflow to deploy Terraform Projects
+
+on:
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: 'Environment to run the workflow against'
+        type: environment
+        required: true
+  pull_request:
+    branches: [ main ]
+
+jobs:
+
+  az-tf-deploy:
+    permissions:
+      id-token: write # need this for OIDC
+      contents: read
+    uses: fractiunate-tutorials/gitops-reusable-workflows-modules/.github/workflows/wf-az-tf-deploy.yaml@main
+    with:
+      environment: ${{ github.event.inputs.environment }}
+    secrets: inherit
