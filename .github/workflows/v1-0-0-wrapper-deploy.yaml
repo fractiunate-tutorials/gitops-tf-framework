@@ -5,8 +5,14 @@ on:
     inputs:
       environment:
         description: 'Environment to run the workflow against'
-        type: environment
+        # type: environment
+        type: choice
         required: true
+        default: 'dev'
+        options:
+        - dev
+        - rc
+        - prod
   pull_request:
     branches: [ main ]
 
